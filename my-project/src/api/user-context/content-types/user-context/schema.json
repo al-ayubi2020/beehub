@@ -15,7 +15,7 @@
     "namaLengkap": {
       "type": "string"
     },
-    "Token": {
+    "token": {
       "type": "text"
     },
     "role": {
