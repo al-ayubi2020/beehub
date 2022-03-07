@@ -1,0 +1,37 @@
+{
+  "kind": "collectionType",
+  "collectionName": "user_contexts",
+  "info": {
+    "singularName": "user-context",
+    "pluralName": "user-contexts",
+    "displayName": "UserContext",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "namaLengkap": {
+      "type": "string"
+    },
+    "token": {
+      "type": "text"
+    },
+    "role": {
+      "type": "enumeration",
+      "enum": [
+        "basic",
+        "maintainer"
+      ]
+    },
+    "onBoarding": {
+      "type": "boolean"
+    },
+    "comments": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::comment.comment"
+    }
+  }
+}
