@@ -2,6 +2,7 @@ import "../styles/globals.css";
 import type { AppProps } from "next/app";
 import { SnackbarProvider } from "notistack";
 import { UserContextProvider } from "../components/context/UserContext";
+import NavbarContainer from "../components/elements/Navbar";
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
@@ -20,6 +21,7 @@ function MyApp({ Component, pageProps }: AppProps) {
       preventDuplicate={true}
     >
       <UserContextProvider>
+        <NavbarContainer />
         <Component {...pageProps} />
       </UserContextProvider>
     </SnackbarProvider>

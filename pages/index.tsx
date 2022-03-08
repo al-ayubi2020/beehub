@@ -13,13 +13,7 @@ import NavbarContainer from "../components/elements/Navbar";
 const Home: NextPage = () => {
   const router = useRouter();
 
-  return (
-    <div className="min-h-screen">
-      <NavbarContainer />
-      <div className="min-h-screen"></div>
-      <div className="min-h-screen"></div>
-    </div>
-  );
+  return <div className="min-h-screen w-screen "></div>;
 };
 
 export default Home;
