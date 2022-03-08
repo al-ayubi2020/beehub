@@ -32,8 +32,11 @@ export const UserContextProvider: React.FC<ContextProviderProps> = ({
           setUser(res.data.user);
           setToken(res.data.jwt);
           console.log("jwt", token);
-          setLoading(false);
           nookies.set(null, "token", res.data.jwt);
+          setLoading(false);
+          enqueueSnackbar("Berhasil login, selamat datang di BeeHub!", {
+            variant: "info",
+          });
           router.replace("/");
         }
       })
@@ -41,6 +44,9 @@ export const UserContextProvider: React.FC<ContextProviderProps> = ({
         console.log("error", err);
         setError(err);
         setLoading(false);
+        enqueueSnackbar(`Terjadi error saat login [${err}]`, {
+          variant: "error",
+        });
       });
   };
 
@@ -65,26 +71,40 @@ export const UserContextProvider: React.FC<ContextProviderProps> = ({
         if (res.data.jwt) {
           setUser(res.data.user);
           setToken(res.data.jwt);
-          setLoading(false);
           nookies.set(null, "token", res.data.jwt);
-          router.replace("/");
+          setLoading(false);
+          enqueueSnackbar("Berhasil login, selamat datang di BeeHub!", {
+            variant: "info",
+          });
         }
       })
       .catch((err) => {
         console.log("error", err);
         setError(err);
         setLoading(false);
+        enqueueSnackbar(`Terjadi error saat login [${err}]`, {
+          variant: "error",
+        });
       });
   };
 
   const logoutUser = () => {
-    setLoading(true);
-    nookies.destroy(null, "token");
-    setUser(null);
-    setToken("");
-    setError("");
-    setLoading(false);
-    router.replace("/");
+    try {
+      setLoading(true);
+      nookies.destroy(null, "token");
+      setUser(null);
+      setToken("");
+      setError("");
+      setLoading(false);
+      router.replace("/");
+      enqueueSnackbar("Berhasil logout", {
+        variant: "info",
+      });
+    } catch (err) {
+      enqueueSnackbar(`Terjadi error saat logout [${err}]`, {
+        variant: "error",
+      });
+    }
   };
 
   const contextValue = {
