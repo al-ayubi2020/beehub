@@ -41,7 +41,7 @@ const NavbarContainer = () => {
             </p>
           </Link>
           <button
-            className="bg-cyan-400 px-2 rounded-md"
+            className="bg-cyan-400 px-2 rounded-md py-0.5"
             onClick={() => setModalOpen(true)}
           >
             Login

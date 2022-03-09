@@ -2,9 +2,131 @@ import { Dialog, Transition } from "@headlessui/react";
 import { Fragment, useState } from "react";
 import { ModalProps } from "./interface";
 import { useUserContext } from "../../context/UserContext";
+import { Tab } from "@headlessui/react";
 
 const Modal: React.FC<ModalProps> = ({ children }) => {
+  function classNames(...classes: any) {
+    return classes.filter(Boolean).join(" ");
+  }
+
   const { modalOpen, setModalOpen } = useUserContext();
+  const [tabIndex, setTabIndex] = useState(1);
+
+  const TabHandler = (i: any) => {
+    switch (i) {
+      case 1:
+        return (
+          <form>
+            <div className="mb-4">
+              <label className="block text-gray-700 text-sm font-normal mb-2">
+                Email
+              </label>
+              <input
+                className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                name="email"
+                v-model="form.email"
+                type="email"
+                required
+                placeholder="Email"
+              />
+            </div>
+            <div className="mb-6">
+              <label className="block text-gray-700 text-sm font-normal mb-2">
+                Password
+              </label>
+              <input
+                className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
+                v-model="form.password"
+                type="password"
+                placeholder="Password"
+                name="password"
+                required
+              />
+            </div>
+            <div className="flex items-center justify-between">
+              <button
+                className="px-4 py-2 rounded text-white inline-block shadow-lg bg-red-300 focus:bg-red-400"
+                type="submit"
+              >
+                Login
+              </button>
+              <a
+                className="inline-block align-baseline font-normal text-sm text-blue-500 hover:text-blue-800"
+                href="#"
+              >
+                Forgot Password?
+              </a>
+            </div>
+          </form>
+        );
+
+      case 2:
+        return (
+          <form>
+            <div className="mb-4">
+              <label className="block text-gray-700 text-sm font-normal mb-2">
+                Username
+              </label>
+              <input
+                className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                name="username"
+                v-model="form.username"
+                type="usename"
+                required
+                placeholder="Username"
+              />
+            </div>
+            <div className="mb-4">
+              <label className="block text-gray-700 text-sm font-normal mb-2">
+                Fullname
+              </label>
+              <input
+                className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                name="fullname"
+                v-model="form.fullname"
+                type="fullname"
+                required
+                placeholder="Fullname"
+              />
+            </div>
+            <div className="mb-4">
+              <label className="block text-gray-700 text-sm font-normal mb-2">
+                Email
+              </label>
+              <input
+                className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                name="email"
+                v-model="form.email"
+                type="email"
+                required
+                placeholder="Email"
+              />
+            </div>
+            <div className="mb-6">
+              <label className="block text-gray-700 text-sm font-normal mb-2">
+                Password
+              </label>
+              <input
+                className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
+                v-model="form.password"
+                type="password"
+                placeholder="Password"
+                name="password"
+                required
+              />
+            </div>
+            <div className="flex items-center justify-between">
+              <button
+                className="px-4 py-2 rounded text-white inline-block shadow-lg bg-orange-300  focus:bg-orange-400"
+                type="submit"
+              >
+                Register
+              </button>
+            </div>
+          </form>
+        );
+    }
+  };
 
   return (
     <>
@@ -12,7 +134,7 @@ const Modal: React.FC<ModalProps> = ({ children }) => {
       <Transition appear show={modalOpen} as={Fragment}>
         <Dialog
           as="div"
-          className="fixed inset-0 z-10 overflow-y-auto"
+          className="fixed inset-0 z-50 overflow-y-auto"
           onClose={() => setModalOpen(false)}
         >
           <div className="min-h-screen px-4 text-center">
@@ -49,24 +171,55 @@ const Modal: React.FC<ModalProps> = ({ children }) => {
                   as="h3"
                   className="text-lg font-medium leading-6 text-gray-900"
                 >
-                  Payment successful
+                  Authenticate
                 </Dialog.Title>
                 <div className="mt-2">
-                  <p className="text-sm text-gray-500">
-                    Your payment has been successfully submitted. We’ve sent you
-                    an email with all of the details of your order.
-                  </p>
+                  <Tab.Group>
+                    <Tab.List className="flex p-1 space-x-1 bg-blue-900/20 rounded-xl">
+                      <div
+                        className="h-full w-full"
+                        onClick={() => setTabIndex(1)}
+                      >
+                        <Tab
+                          key={1}
+                          className={({ selected }) =>
+                            classNames(
+                              "w-full py-2.5 text-sm leading-5 font-medium text-red-300 rounded-lg",
+                              "focus:outline-none focus:ring-2 ring-offset-2 ring-offset-red-300 ring-white ring-opacity-60",
+                              selected
+                                ? "bg-white shadow"
+                                : "text-blue-100 hover:bg-white/[0.12] hover:text-white"
+                            )
+                          }
+                        >
+                          Login
+                        </Tab>
+                      </div>
+                      <div
+                        className="h-full w-full"
+                        onClick={() => setTabIndex(2)}
+                      >
+                        <Tab
+                          key={2}
+                          className={({ selected }) =>
+                            classNames(
+                              "w-full py-2.5 text-sm leading-5 font-medium text-orange-300 rounded-lg",
+                              "focus:outline-none focus:ring-2 ring-offset-2 ring-offset-orange-300 ring-white ring-opacity-60",
+                              selected
+                                ? "bg-white shadow"
+                                : "text-blue-100 hover:bg-white/[0.12] hover:text-white"
+                            )
+                          }
+                          onClick={() => setTabIndex(2)}
+                        >
+                          Register
+                        </Tab>
+                      </div>
+                    </Tab.List>
+                  </Tab.Group>
                 </div>
 
-                <div className="mt-4">
-                  <button
-                    type="button"
-                    className="inline-flex justify-center px-4 py-2 text-sm font-medium text-blue-900 bg-blue-100 border border-transparent rounded-md hover:bg-blue-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-blue-500"
-                    onClick={() => setModalOpen(false)}
-                  >
-                    Got it, thanks!
-                  </button>
-                </div>
+                <div className="mt-4">{TabHandler(tabIndex)}</div>
               </div>
             </Transition.Child>
           </div>
