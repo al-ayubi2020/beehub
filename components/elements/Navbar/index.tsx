@@ -27,7 +27,9 @@ const NavbarContainer = () => {
       >
         <div className="flex space-x-5">
           <Link href="/">
-            <p className="text-red-300 font-bold cursor-pointer">BEEHUB</p>
+            <p className="text-red-300 font-bold cursor-pointer text-2xl">
+              BEEHUB
+            </p>
           </Link>
         </div>
         <div className="flex space-x-5">
