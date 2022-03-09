@@ -3,6 +3,8 @@ import { Dispatch, ReactNode, SetStateAction } from "react";
 export interface UserContextValue {
   user: any;
   token: string;
+  modalOpen: boolean;
+  setModalOpen: Dispatch<SetStateAction<boolean>>;
   loading: boolean;
   error: string;
   login: (identifier: any, password: any) => Promise<void>;

@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import Link from "next/link";
+import { useUserContext } from "../../context/UserContext";
 
 const NavbarContainer = () => {
   const [scroll, setScroll] = useState(false);
+  const { modalOpen, setModalOpen } = useUserContext();
 
   useEffect(() => {
     window.addEventListener("scroll", () =>
@@ -38,7 +40,12 @@ const NavbarContainer = () => {
               Articles
             </p>
           </Link>
-          <button className="bg-cyan-400 px-2 rounded-md">Login</button>
+          <button
+            className="bg-cyan-400 px-2 rounded-md"
+            onClick={() => setModalOpen(true)}
+          >
+            Login
+          </button>
         </div>
       </div>
     </nav>

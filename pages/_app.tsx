@@ -4,6 +4,7 @@ import { SnackbarProvider } from "notistack";
 import { UserContextProvider } from "../components/context/UserContext";
 import NavbarContainer from "../components/elements/Navbar";
 import Footer from "../components/elements/Footer";
+import Modal from "../components/elements/Modal";
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
@@ -22,9 +23,11 @@ function MyApp({ Component, pageProps }: AppProps) {
       preventDuplicate={true}
     >
       <UserContextProvider>
-        <NavbarContainer />
-        <Component {...pageProps} />
-        <Footer />
+        <Modal>
+          <NavbarContainer />
+          <Component {...pageProps} />
+          <Footer />
+        </Modal>
       </UserContextProvider>
     </SnackbarProvider>
   );

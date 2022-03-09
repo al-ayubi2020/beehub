@@ -20,11 +20,14 @@ import image from "../public/Foto.png";
 import comfest from "../public/Comfest.jpg";
 import Perak from "../public/Perak.png";
 import KA from "../public/KA.png";
+import Modal from "../components/elements/Modal";
 
 const Home: NextPage = () => {
   const router = useRouter();
 
   const [show, setShow] = useState(false);
+
+  const [isOpen, setIsOpen] = useState(false);
 
   return (
     <div className="min-h-screen bg-[#e5e5e5]">

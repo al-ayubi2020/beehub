@@ -17,6 +17,7 @@ export const UserContextProvider: React.FC<ContextProviderProps> = ({
   const [token, setToken] = useState("");
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
+  const [modalOpen, setModalOpen] = useState(false);
   const { enqueueSnackbar } = useSnackbar();
 
   const login = async (identifier: any, password: any) => {
@@ -112,6 +113,8 @@ export const UserContextProvider: React.FC<ContextProviderProps> = ({
     loading,
     error,
     token,
+    modalOpen,
+    setModalOpen,
     login,
     register,
     logoutUser,
