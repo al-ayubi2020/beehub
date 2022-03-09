@@ -9,7 +9,7 @@ export const Biodata = () => {
   return (
     <div className="h-screen md:flex">
       <div className="h-2/5 md:h-full md:w-1/2 w-full  flex flex-col items-center justify-center">
-        <div className=" h-56 w-56 md:h-80 md:w-80 mt-5">
+        <div className=" h-56 w-56 md:h-80 md:w-80 mt-5 rounded-full shadow-2xl">
           <Image src={PpImage} className="rounded-full" />
         </div>
       </div>
