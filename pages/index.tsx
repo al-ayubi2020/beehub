@@ -9,11 +9,21 @@ import { useRouter } from "next/router";
 import Link from "next/link";
 import { useUserContext } from "../components/context/UserContext";
 import NavbarContainer from "../components/elements/Navbar";
+import { Biodata, LandingHeader } from "../components/modules";
+import image from "../public/Foto.png";
 
 const Home: NextPage = () => {
   const router = useRouter();
 
-  return <div className="min-h-screen w-screen "></div>;
+  return (
+    <div className="min-h-screen bg-[#e5e5e5]">
+      <LandingHeader />
+      <Biodata />
+      <div className="h-80 w-full border border-red-500 text-center">
+        <p className="text-xl font-bold">Pengalaman dan Prestasi</p>
+      </div>
+    </div>
+  );
 };
 
 export default Home;
