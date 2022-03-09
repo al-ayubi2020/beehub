@@ -4,6 +4,7 @@ import AlternateEmailIcon from "@mui/icons-material/AlternateEmail";
 import InstagramIcon from "@mui/icons-material/Instagram";
 import ChatBubbleOutlineIcon from "@mui/icons-material/ChatBubbleOutline";
 import WhatsAppIcon from "@mui/icons-material/WhatsApp";
+import GitHubIcon from "@mui/icons-material/GitHub";
 
 export const Biodata = () => {
   return (
@@ -33,6 +34,9 @@ export const Biodata = () => {
             <p className="text-base font-bold mb-2">Contact Person</p>
             <p>
               <AlternateEmailIcon /> al.ayubi2020@gmail.com
+            </p>
+            <p>
+              <GitHubIcon /> al-ayubi2020
             </p>
             <p>
               <InstagramIcon /> al.ayubi2020

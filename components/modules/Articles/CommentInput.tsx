@@ -6,8 +6,8 @@ export interface CommentInputProps {
 
 export const CommentInput: React.FC<CommentInputProps> = ({ isLogin }) => {
   return (
-    <div className="mx-auto w-full">
-      <div className="border rounded-lg px-4 py-2 sm:px-6 sm:py-4 relative">
+    <div className="mx-auto w-full ">
+      <div className="border rounded-lg px-4 py-2 sm:px-6 sm:py-4 relative border-white shadow-md">
         <strong>Add a new comment</strong>
         {isLogin ? (
           <textarea

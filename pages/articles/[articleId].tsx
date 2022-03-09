@@ -10,7 +10,7 @@ const ArticleDetails: NextPage = () => {
   const router = useRouter();
 
   return (
-    <div className="min-h-screen w-full">
+    <div className="min-h-screen w-full bg-[#e5e5e5]">
       <ArticleDetailsHeader title="Tes Judul" date="20 juni 2021" />
       <div className="h-full w-full px-20 py-10">
         <div className="h-full w-full px-40">

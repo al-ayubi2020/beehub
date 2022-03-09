@@ -17,7 +17,7 @@ export const AchievementBox: React.FC<AchievementBoxProps> = ({
   const [showRegistrant, setShowRegistrant] = useState(false);
 
   return (
-    <div className=" h-full w-fit shadow-2xl">
+    <div className=" h-full w-fit shadow-2xl border border-white">
       <div
         className="rounded-lg bg-surface hover:scale-105 transition-transform duration-500"
         onMouseEnter={() => setShowRegistrant(true)}
@@ -42,7 +42,7 @@ export const AchievementBox: React.FC<AchievementBoxProps> = ({
                   : "transition-all duration-300 opacity-0 z-50 absolute bottom-1 left-1"
               }
             >
-              <p className="font-retro text-primary text-lg py-2 text-gray-500">
+              <p className="font-retro text-primary text-lg py-2 text-gray-500 pl-2">
                 {achiType}
               </p>
             </div>

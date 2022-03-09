@@ -3,6 +3,7 @@ import type { AppProps } from "next/app";
 import { SnackbarProvider } from "notistack";
 import { UserContextProvider } from "../components/context/UserContext";
 import NavbarContainer from "../components/elements/Navbar";
+import Footer from "../components/elements/Footer";
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
@@ -23,6 +24,7 @@ function MyApp({ Component, pageProps }: AppProps) {
       <UserContextProvider>
         <NavbarContainer />
         <Component {...pageProps} />
+        <Footer />
       </UserContextProvider>
     </SnackbarProvider>
   );
