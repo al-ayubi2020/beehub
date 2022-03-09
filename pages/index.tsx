@@ -34,7 +34,7 @@ const Home: NextPage = () => {
       </div>
       <div className="h-fit w-full text-center flex flex-col items-center justify-center">
         <p className="md:text-3xl  text-2xl font-bold">
-          Pengalaman dan Prestasi
+          Experience and Achievements
         </p>
         <div className="grid md:grid-cols-3 lg:gap-x-40 md:gap-x-14 md:mt-16 mt-10 mb-10 grid-cols-1 gap-y-10">
           <AchievementBox
@@ -60,7 +60,9 @@ const Home: NextPage = () => {
       <div className="h-fit w-full px-5 space-y-5 py-16" id="content-articles">
         <div className="h-fit w-full flex justify-between">
           <p className="font-bold text-3xl">The Articles</p>
-          <p className="cursor-pointer">See More</p>
+          <Link href="/articles">
+            <p className="cursor-pointer hover:text-orange-300">See More</p>
+          </Link>
         </div>
         {[...Array(3)].map((item) => (
           <NewArticleCard
