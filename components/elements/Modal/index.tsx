@@ -16,7 +16,7 @@ const Modal: React.FC<ModalProps> = ({ children }) => {
   const passwordRef = useRef();
   const unameRef = useRef();
   const fullnameRef = useRef();
-  const { login, register } = useUserContext();
+  const { login, register, loading } = useUserContext();
 
   const handleRegister = async (e: any) => {
     e.preventDefault();
@@ -52,9 +52,9 @@ const Modal: React.FC<ModalProps> = ({ children }) => {
                 name="email"
                 v-model="form.email"
                 type="email"
-                required
                 placeholder="Email"
                 ref={emailRef}
+                required
               />
             </div>
             <div className="mb-6">
@@ -67,18 +67,28 @@ const Modal: React.FC<ModalProps> = ({ children }) => {
                 type="password"
                 placeholder="Password"
                 name="password"
-                required
                 ref={passwordRef}
+                required
               />
             </div>
             <div className="flex items-center justify-between">
-              <button
-                className="px-4 py-2 rounded text-white inline-block shadow-lg bg-red-300 focus:bg-red-400"
-                type="submit"
-                onClick={handleLogin}
-              >
-                Login
-              </button>
+              {loading ? (
+                <button
+                  className="px-4 py-2 rounded text-white inline-block shadow-lg bg-red-300 focus:bg-red-400 disabled"
+                  type="submit"
+                  onClick={handleLogin}
+                >
+                  Login
+                </button>
+              ) : (
+                <button
+                  className="px-4 py-2 rounded text-white inline-block shadow-lg bg-red-300 focus:bg-red-400"
+                  type="submit"
+                  onClick={handleLogin}
+                >
+                  Login
+                </button>
+              )}
               <a
                 className="inline-block align-baseline font-normal text-sm text-blue-500 hover:text-blue-800"
                 href="#"
@@ -149,13 +159,23 @@ const Modal: React.FC<ModalProps> = ({ children }) => {
               />
             </div>
             <div className="flex items-center justify-between">
-              <button
-                className="px-4 py-2 rounded text-white inline-block shadow-lg bg-orange-300  focus:bg-orange-400"
-                type="submit"
-                onClick={handleRegister}
-              >
-                Register
-              </button>
+              {loading ? (
+                <button
+                  className="px-4 py-2 rounded text-white inline-block shadow-lg bg-orange-300  focus:bg-orange-400 disabled"
+                  type="submit"
+                  onClick={handleRegister}
+                >
+                  Register
+                </button>
+              ) : (
+                <button
+                  className="px-4 py-2 rounded text-white inline-block shadow-lg bg-orange-300  focus:bg-orange-400"
+                  type="submit"
+                  onClick={handleRegister}
+                >
+                  Register
+                </button>
+              )}
             </div>
           </form>
         );
