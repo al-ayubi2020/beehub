@@ -19,7 +19,7 @@ export const NewArticleCard: React.FC<NewArticleCardProps> = ({
     <div
       className={`flex flex-none h-${height} w-${width} cursor-pointer border border-white rounded-lg shadow-xl`}
     >
-      <div className={`h-${height} w-${height} p-2 rounded flex-none`}>
+      <div className={`h-40 w-40 p-2 rounded flex-none`}>
         <div className="bg-red-500 h-full w-full rounded"></div>
       </div>
       <div className="pt-2 overflow-hidden space-y-2">

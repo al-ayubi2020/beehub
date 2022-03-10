@@ -20,6 +20,18 @@ export const UserContextProvider: React.FC<ContextProviderProps> = ({
   const [modalOpen, setModalOpen] = useState(false);
   const { enqueueSnackbar } = useSnackbar();
 
+  useEffect(() => {
+    const cookies = nookies.get();
+    const token = cookies.token;
+    if (token) {
+      const user = JSON.parse(cookies.beehub);
+      setUser(user);
+    }
+    console.log("effect", cookies.token);
+    console.log("effect2", cookies.beehub);
+    setToken(token);
+  }, [token]);
+
   const login = async (identifier: any, password: any) => {
     setLoading(true);
     const login = await axios
@@ -30,21 +42,25 @@ export const UserContextProvider: React.FC<ContextProviderProps> = ({
       .then((res) => {
         console.log("res", res);
         if (res.data.jwt) {
+          const userObj = res.data.user;
+          const userJson = JSON.stringify(userObj);
           setUser(res.data.user);
           setToken(res.data.jwt);
           console.log("jwt", token);
           nookies.set(null, "token", res.data.jwt);
+          nookies.set(null, "beehub", userJson);
           setLoading(false);
+          setModalOpen(false);
           enqueueSnackbar("Berhasil login, selamat datang di BeeHub!", {
             variant: "info",
           });
-          router.replace("/");
         }
       })
       .catch((err) => {
         console.log("error", err);
         setError(err);
         setLoading(false);
+        setModalOpen(false);
         enqueueSnackbar(`Terjadi error saat login [${err}]`, {
           variant: "error",
         });
@@ -73,7 +89,9 @@ export const UserContextProvider: React.FC<ContextProviderProps> = ({
           setUser(res.data.user);
           setToken(res.data.jwt);
           nookies.set(null, "token", res.data.jwt);
+          nookies.set(null, "beehub", res.data.user);
           setLoading(false);
+          setModalOpen(false);
           enqueueSnackbar("Berhasil login, selamat datang di BeeHub!", {
             variant: "info",
           });
@@ -83,6 +101,7 @@ export const UserContextProvider: React.FC<ContextProviderProps> = ({
         console.log("error", err);
         setError(err);
         setLoading(false);
+        setModalOpen(false);
         enqueueSnackbar(`Terjadi error saat login [${err}]`, {
           variant: "error",
         });
@@ -93,6 +112,7 @@ export const UserContextProvider: React.FC<ContextProviderProps> = ({
     try {
       setLoading(true);
       nookies.destroy(null, "token");
+      nookies.destroy(null, "beehub");
       setUser(null);
       setToken("");
       setError("");

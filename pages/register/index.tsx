@@ -12,24 +12,6 @@ import {
   useUserContext,
 } from "../../components/context/UserContext";
 
-export const getServerSideProps = async (ctx: any) => {
-  const cookies = nookies.get(ctx);
-
-  console.log(cookies);
-
-  if (cookies.token) {
-    return {
-      redirect: {
-        destination: "/dashboard",
-      },
-    };
-  }
-
-  return {
-    props: {},
-  };
-};
-
 const Home: NextPage = () => {
   const router = useRouter();
   const unameRef = useRef();

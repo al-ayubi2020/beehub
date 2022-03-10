@@ -24,10 +24,13 @@ import Modal from "../components/elements/Modal";
 
 const Home: NextPage = () => {
   const router = useRouter();
+  const { user, token } = useUserContext();
 
   const [show, setShow] = useState(false);
 
   const [isOpen, setIsOpen] = useState(false);
+
+  console.log("tokentoken", user);
 
   return (
     <div className="min-h-screen bg-[#e5e5e5]">

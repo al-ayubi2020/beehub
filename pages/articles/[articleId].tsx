@@ -5,8 +5,11 @@ import {
   CommentBox,
   CommentInput,
 } from "../../components/modules";
+import { useUserContext } from "../../components/context/UserContext";
 
 const ArticleDetails: NextPage = () => {
+  const { modalOpen, setModalOpen } = useUserContext();
+
   const router = useRouter();
 
   return (

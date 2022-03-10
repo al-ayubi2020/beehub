@@ -1,5 +1,5 @@
 import { Dialog, Transition } from "@headlessui/react";
-import { Fragment, useState } from "react";
+import { Fragment, useRef, useState } from "react";
 import { ModalProps } from "./interface";
 import { useUserContext } from "../../context/UserContext";
 import { Tab } from "@headlessui/react";
@@ -11,6 +11,17 @@ const Modal: React.FC<ModalProps> = ({ children }) => {
 
   const { modalOpen, setModalOpen } = useUserContext();
   const [tabIndex, setTabIndex] = useState(1);
+  const emailRef = useRef();
+  const passwordRef = useRef();
+  const { login } = useUserContext();
+
+  const handleLogin = async (e: any) => {
+    e.preventDefault();
+    console.log("email", emailRef.current.value);
+    console.log("password", passwordRef.current.value);
+
+    login(`${emailRef.current.value}`, `${passwordRef.current.value}`);
+  };
 
   const TabHandler = (i: any) => {
     switch (i) {
@@ -28,6 +39,7 @@ const Modal: React.FC<ModalProps> = ({ children }) => {
                 type="email"
                 required
                 placeholder="Email"
+                ref={emailRef}
               />
             </div>
             <div className="mb-6">
@@ -41,12 +53,14 @@ const Modal: React.FC<ModalProps> = ({ children }) => {
                 placeholder="Password"
                 name="password"
                 required
+                ref={passwordRef}
               />
             </div>
             <div className="flex items-center justify-between">
               <button
                 className="px-4 py-2 rounded text-white inline-block shadow-lg bg-red-300 focus:bg-red-400"
                 type="submit"
+                onClick={handleLogin}
               >
                 Login
               </button>
@@ -135,7 +149,10 @@ const Modal: React.FC<ModalProps> = ({ children }) => {
         <Dialog
           as="div"
           className="fixed inset-0 z-50 overflow-y-auto"
-          onClose={() => setModalOpen(false)}
+          onClose={() => {
+            setModalOpen(false);
+            setTabIndex(1);
+          }}
         >
           <div className="min-h-screen px-4 text-center">
             <Transition.Child
