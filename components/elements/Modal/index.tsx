@@ -11,9 +11,24 @@ const Modal: React.FC<ModalProps> = ({ children }) => {
 
   const { modalOpen, setModalOpen } = useUserContext();
   const [tabIndex, setTabIndex] = useState(1);
+
   const emailRef = useRef();
   const passwordRef = useRef();
-  const { login } = useUserContext();
+  const unameRef = useRef();
+  const fullnameRef = useRef();
+  const { login, register } = useUserContext();
+
+  const handleRegister = async (e: any) => {
+    e.preventDefault();
+
+    register(
+      `${unameRef.current.value}`,
+      `${emailRef.current.value}`,
+      `${passwordRef.current.value}`,
+      "basic",
+      `${fullnameRef.current.value}`
+    );
+  };
 
   const handleLogin = async (e: any) => {
     e.preventDefault();
@@ -88,6 +103,7 @@ const Modal: React.FC<ModalProps> = ({ children }) => {
                 type="usename"
                 required
                 placeholder="Username"
+                ref={unameRef}
               />
             </div>
             <div className="mb-4">
@@ -101,6 +117,7 @@ const Modal: React.FC<ModalProps> = ({ children }) => {
                 type="fullname"
                 required
                 placeholder="Fullname"
+                ref={fullnameRef}
               />
             </div>
             <div className="mb-4">
@@ -114,6 +131,7 @@ const Modal: React.FC<ModalProps> = ({ children }) => {
                 type="email"
                 required
                 placeholder="Email"
+                ref={emailRef}
               />
             </div>
             <div className="mb-6">
@@ -127,12 +145,14 @@ const Modal: React.FC<ModalProps> = ({ children }) => {
                 placeholder="Password"
                 name="password"
                 required
+                ref={passwordRef}
               />
             </div>
             <div className="flex items-center justify-between">
               <button
                 className="px-4 py-2 rounded text-white inline-block shadow-lg bg-orange-300  focus:bg-orange-400"
                 type="submit"
+                onClick={handleRegister}
               >
                 Register
               </button>

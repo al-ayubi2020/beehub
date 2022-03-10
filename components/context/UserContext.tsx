@@ -86,13 +86,9 @@ export const UserContextProvider: React.FC<ContextProviderProps> = ({
       .then((res) => {
         console.log("res", res);
         if (res.data.jwt) {
-          setUser(res.data.user);
-          setToken(res.data.jwt);
-          nookies.set(null, "token", res.data.jwt);
-          nookies.set(null, "beehub", res.data.user);
           setLoading(false);
           setModalOpen(false);
-          enqueueSnackbar("Berhasil login, selamat datang di BeeHub!", {
+          enqueueSnackbar("Berhasil register, silahkan login!", {
             variant: "info",
           });
         }
@@ -102,7 +98,7 @@ export const UserContextProvider: React.FC<ContextProviderProps> = ({
         setError(err);
         setLoading(false);
         setModalOpen(false);
-        enqueueSnackbar(`Terjadi error saat login [${err}]`, {
+        enqueueSnackbar(`Terjadi error saat register [${err}]`, {
           variant: "error",
         });
       });
