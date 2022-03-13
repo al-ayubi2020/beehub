@@ -11,9 +11,6 @@ export const CommentInput: React.FC<CommentInputProps> = ({ postId }) => {
   const commentRef = useRef();
 
   const handlePostComment = async (e: any) => {
-    e.preventDefault();
-    console.log("email", commentRef.current.value);
-
     postComment(`${commentRef.current.value}`, postId);
   };
 

@@ -5,6 +5,7 @@ import { UserContextProvider } from "../components/context/UserContext";
 import NavbarContainer from "../components/elements/Navbar";
 import Footer from "../components/elements/Footer";
 import Modal from "../components/elements/Modal";
+import ModalAdmin from "../components/elements/AdminModal";
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
@@ -24,9 +25,11 @@ function MyApp({ Component, pageProps }: AppProps) {
     >
       <UserContextProvider>
         <Modal>
-          <NavbarContainer />
-          <Component {...pageProps} />
-          <Footer />
+          <ModalAdmin>
+            <NavbarContainer />
+            <Component {...pageProps} />
+            <Footer />
+          </ModalAdmin>
         </Modal>
       </UserContextProvider>
     </SnackbarProvider>

@@ -4,11 +4,18 @@ import Link from "next/link";
 import { useUserContext } from "../../context/UserContext";
 import { Menu, Transition } from "@headlessui/react";
 import { ChevronDownIcon } from "@heroicons/react/solid";
-import { LogoutIcon } from "@heroicons/react/outline";
+import { LogoutIcon, DocumentAddIcon } from "@heroicons/react/outline";
 
 const NavbarContainer = () => {
   const [scroll, setScroll] = useState(false);
-  const { setModalOpen, token, user, logoutUser } = useUserContext();
+  const {
+    setModalOpen,
+    token,
+    user,
+    logoutUser,
+    customRole,
+    setModalAdminOpen,
+  } = useUserContext();
   useEffect(() => {
     window.addEventListener("scroll", () =>
       !window.scrollY ? setScroll(false) : setScroll(true)
@@ -33,7 +40,7 @@ const NavbarContainer = () => {
             </p>
           </Link>
           <Link href="/articles">
-            <p className="text-orange-300 cursor-pointer hover:text-orange-200">
+            <p className="text-orange-300 cursor-pointer hover:text-orange-200 hidden md:block">
               Articles
             </p>
           </Link>
@@ -57,8 +64,33 @@ const NavbarContainer = () => {
                 leaveFrom="transform opacity-100 scale-100"
                 leaveTo="transform opacity-0 scale-95"
               >
-                <Menu.Items className="absolute right-4 top-10 w-32 lg:w-56 mt-2 origin-top-right bg-white divide-y divide-gray-100 rounded-md shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
+                <Menu.Items className="absolute right-4 top-10 w-40 lg:w-56 mt-2 origin-top-right bg-white divide-y divide-gray-100 rounded-md shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
                   <div className="px-1 py-1 ">
+                    {customRole == "admin" && (
+                      <Menu.Item>
+                        {({ active }) => (
+                          <button
+                            onClick={() => setModalAdminOpen(true)}
+                            className={`${
+                              active ? "bg-red-300 text-white" : "text-gray-900"
+                            } group flex rounded-md items-center w-full px-2 py-2 text-sm`}
+                          >
+                            {active ? (
+                              <DocumentAddIcon
+                                className="w-5 h-5 mr-2"
+                                aria-hidden="true"
+                              />
+                            ) : (
+                              <DocumentAddIcon
+                                className="w-5 h-5 mr-2"
+                                aria-hidden="true"
+                              />
+                            )}
+                            Add New Article
+                          </button>
+                        )}
+                      </Menu.Item>
+                    )}
                     <Menu.Item>
                       {({ active }) => (
                         <button

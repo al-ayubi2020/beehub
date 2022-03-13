@@ -15,10 +15,12 @@ export const UserContextProvider: React.FC<ContextProviderProps> = ({
   const router = useRouter();
   const [user, setUser] = useState(null);
   const [username, setUsername] = useState("");
+  const [customRole, setCustomRole] = useState("");
   const [token, setToken] = useState("");
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
   const [modalOpen, setModalOpen] = useState(false);
+  const [modalAdminOpen, setModalAdminOpen] = useState(false);
   const { enqueueSnackbar } = useSnackbar();
 
   useEffect(() => {
@@ -28,9 +30,12 @@ export const UserContextProvider: React.FC<ContextProviderProps> = ({
       const user = JSON.parse(cookies.beehub);
       setUser(user);
       setUsername(user.username);
+      setCustomRole(user.customRole);
     } else {
       setUsername("");
+      setCustomRole("");
     }
+    console.log("state user", user);
     setToken(token);
   }, [token]);
 
@@ -106,6 +111,30 @@ export const UserContextProvider: React.FC<ContextProviderProps> = ({
       });
   };
 
+  const postArticle = async (title: any, body: any) => {
+    const postArticle = await axios
+      .post(
+        `${process.env.NEXT_PUBLIC_API_URL}/api/posts`,
+        {
+          data: {
+            titile: title,
+            body: body,
+          },
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      )
+      .then(() => {
+        enqueueSnackbar("Article ditambahkan", {
+          variant: "info",
+        });
+        router.reload();
+      });
+  };
+
   const postComment = async (comment: any, postId: any) => {
     const postComment = await axios
       .post(
@@ -178,6 +207,10 @@ export const UserContextProvider: React.FC<ContextProviderProps> = ({
     username,
     postComment,
     deleteComment,
+    customRole,
+    modalAdminOpen,
+    setModalAdminOpen,
+    postArticle,
   };
 
   return (
