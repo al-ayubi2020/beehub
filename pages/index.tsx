@@ -52,18 +52,21 @@ const Home: NextPage = () => {
         </p>
         <div className="grid md:grid-cols-3 lg:gap-x-40 md:gap-x-14 md:mt-16 mt-10 mb-10 grid-cols-1 gap-y-10">
           <AchievementBox
+            url="https://www.compfest.id/"
             show={show}
             image={comfest}
             title="Comfest Software Enginering Academy"
             achiType="Training Workshop"
           />
           <AchievementBox
+            url="https://csui2021.vercel.app/"
             show={show}
             image={KA}
             title="Karya Angkatan Bakung Web Developer"
             achiType="Staff Project"
           />
           <AchievementBox
+            url="https://perak.cs.ui.ac.id/"
             show={show}
             image={Perak}
             title="Perak 2021 Web Developer"

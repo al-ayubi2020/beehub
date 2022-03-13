@@ -6,9 +6,11 @@ export interface AchievementBoxProps {
   image?: any;
   title?: string;
   achiType?: string;
+  url?: string;
 }
 
 export const AchievementBox: React.FC<AchievementBoxProps> = ({
+  url,
   show,
   image,
   title,
@@ -56,9 +58,11 @@ export const AchievementBox: React.FC<AchievementBoxProps> = ({
               <p className="font-retro text-primary text-lg py-2 font-bold">
                 {title}
               </p>
-              <button className="bg-red-300 rounded-lg px-2 py-1 mt-2 drop-shadow-lg ">
-                Go to Website
-              </button>
+              <a href={url}>
+                <button className="bg-red-300 rounded-lg px-2 py-1 mt-2 drop-shadow-lg ">
+                  Go to Website
+                </button>
+              </a>
             </div>
           </div>
         </div>

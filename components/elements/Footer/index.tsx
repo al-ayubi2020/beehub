@@ -8,18 +8,24 @@ const Footer = () => {
   return (
     <div className="w-full h-fit bg-[#2b3d53] py-3">
       <div className="w-full h-fit flex items-center justify-center space-x-4">
-        <div className="w-8 h-8 rounded-full bg-orange-300 flex items-center justify-center">
-          <InstagramIcon />
-        </div>
+        <a href="https://www.instagram.com/al.ayubi2020/">
+          <div className="w-8 h-8 rounded-full bg-orange-300 flex items-center justify-center">
+            <InstagramIcon />
+          </div>
+        </a>
         <div className="w-8 h-8 rounded-full bg-orange-300 flex items-center justify-center">
           <WhatsAppIcon />
         </div>
-        <div className="w-8 h-8 rounded-full bg-orange-300 flex items-center justify-center">
-          <ChatBubbleOutlineIcon />
-        </div>
-        <div className="w-8 h-8 rounded-full bg-orange-300 flex items-center justify-center">
-          <GitHubIcon />
-        </div>
+        <a href="https://line.me/ti/p/0KO-5sl7hI">
+          <div className="w-8 h-8 rounded-full bg-orange-300 flex items-center justify-center">
+            <ChatBubbleOutlineIcon />
+          </div>
+        </a>
+        <a href="https://github.com/al-ayubi2020">
+          <div className="w-8 h-8 rounded-full bg-orange-300 flex items-center justify-center">
+            <GitHubIcon />
+          </div>
+        </a>
       </div>
       <div className="h-fit w-full flex items-center justify-center">
         <p className="text-4xl text-red-300 font-extrabold">BEEHUB</p>
