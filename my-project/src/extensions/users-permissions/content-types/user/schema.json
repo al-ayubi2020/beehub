@@ -63,10 +63,20 @@
       "inversedBy": "users",
       "configurable": false
     },
-    "user_context": {
+    "customRole": {
+      "type": "enumeration",
+      "enum": [
+        "basic",
+        "admin"
+      ]
+    },
+    "comments": {
       "type": "relation",
-      "relation": "oneToOne",
-      "target": "api::user-context.user-context"
+      "relation": "oneToMany",
+      "target": "api::comment.comment"
+    },
+    "fullname": {
+      "type": "string"
     }
   }
 }
