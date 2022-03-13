@@ -1,3 +1,4 @@
+import { CircularProgress } from "@mui/material";
 import React, { useRef } from "react";
 import { useUserContext } from "../../context/UserContext";
 
@@ -6,8 +7,7 @@ export interface CommentInputProps {
 }
 
 export const CommentInput: React.FC<CommentInputProps> = ({ postId }) => {
-  const { setModalOpen, postComment } = useUserContext();
-  const { user } = useUserContext();
+  const { setModalOpen, postComment, user, loading } = useUserContext();
   const commentRef = useRef();
 
   const handlePostComment = async () => {
@@ -39,12 +39,18 @@ export const CommentInput: React.FC<CommentInputProps> = ({ postId }) => {
         )}
         {user && (
           <div className="h-full w-full flex justify-end pt-4">
-            <button
-              className="bg-red-300 px-2 py-1 rounded-md shadow-sm hover:bg-green-400 duration-300"
-              onClick={handlePostComment}
-            >
-              Post Comment
-            </button>
+            {loading ? (
+              <div className="bg-red-300 px-2 py-1 rounded-md shadow-sm h-8 w-24 flex items-center justify-center">
+                <CircularProgress size={20} />
+              </div>
+            ) : (
+              <button
+                className="bg-red-300 px-2 py-1 rounded-md shadow-sm hover:bg-green-400 duration-300"
+                onClick={handlePostComment}
+              >
+                Post Comment
+              </button>
+            )}
           </div>
         )}
       </div>

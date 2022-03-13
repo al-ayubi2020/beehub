@@ -2,6 +2,7 @@ import { Dialog, Transition } from "@headlessui/react";
 import { Fragment, useRef, useState } from "react";
 import { ModalAdminProps } from "./interface";
 import { useUserContext } from "../../context/UserContext";
+import { CircularProgress } from "@mui/material";
 
 const ModalAdmin: React.FC<ModalAdminProps> = ({ children }) => {
   function classNames(...classes: any) {
@@ -118,12 +119,9 @@ const ModalAdmin: React.FC<ModalAdminProps> = ({ children }) => {
                     </div>
                     <div className="flex items-center justify-between">
                       {loading ? (
-                        <button
-                          className="px-4 py-2 rounded text-white inline-block shadow-lg bg-red-300 focus:bg-red-400 disabled"
-                          type="submit"
-                        >
-                          Post
-                        </button>
+                        <div className="bg-red-300 px-2 py-1 rounded-md shadow-sm h-8 w-24 flex items-center justify-center">
+                          <CircularProgress size={20} />
+                        </div>
                       ) : (
                         <button
                           className="px-4 py-2 rounded text-white inline-block shadow-lg bg-red-300 focus:bg-red-400"

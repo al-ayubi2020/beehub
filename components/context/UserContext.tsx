@@ -137,6 +137,7 @@ export const UserContextProvider: React.FC<ContextProviderProps> = ({
         enqueueSnackbar("Article ditambahkan", {
           variant: "info",
         });
+        setModalAdminOpen(false);
         setLoading(false);
         router.reload();
       })
@@ -251,14 +252,19 @@ export const UserContextProvider: React.FC<ContextProviderProps> = ({
       setLoading(true);
       nookies.destroy(null, "token");
       nookies.destroy(null, "beehub");
+      setLoading(false);
       enqueueSnackbar("Berhasil logout", {
         variant: "info",
       });
-      setLoading(false);
+      router.reload();
     } catch (err) {
+      nookies.destroy(null, "token");
+      nookies.destroy(null, "beehub");
+      setLoading(false);
       enqueueSnackbar(`Terjadi error saat logout [${err}]`, {
         variant: "error",
       });
+      router.reload();
     }
   };
 
