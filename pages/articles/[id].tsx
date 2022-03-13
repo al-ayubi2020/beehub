@@ -45,16 +45,17 @@ const ArticleDetails: NextPage = (props) => {
     <div className="min-h-screen w-full bg-[#e5e5e5]">
       <ArticleDetailsHeader
         title={props.data.data.attributes.titile}
-        date={props.data.data.attributes.createdDate}
+        date={props.data.data.attributes.createdAt}
+        image={props.data.data.attributes.imageUrl}
       />
       <div className="h-full w-full md:px-10 lg:px-20 md:py-10">
         <div className="h-full w-full px-5 pt-5 md:pt-0 md:px-20 lg:px-40">
           <p className="text-justify">{props.data.data.attributes.body}</p>
         </div>
-        <h3 className="mb-4 text-lg font-semibold text-gray-900 justify-start mt-5">
+        <h3 className="mb-4 text-lg font-semibold text-gray-900 justify-start mt-5 pl-3">
           Comments ({props.data.data.attributes.comments.data.length})
         </h3>
-        <div className="h-full w-full flex flex-col items-center justify-center space-y-5">
+        <div className="h-full w-full flex flex-col justify-center space-y-5 px-3 pb-5">
           {props.data.data.attributes.comments.data.map(
             (comment: any, id: number) => (
               <div key={id}>

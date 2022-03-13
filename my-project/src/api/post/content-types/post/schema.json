@@ -18,22 +18,14 @@
     "body": {
       "type": "richtext"
     },
-    "imageCover": {
-      "type": "media",
-      "multiple": false,
-      "required": false,
-      "allowedTypes": [
-        "images",
-        "files",
-        "videos",
-        "audios"
-      ]
-    },
     "comments": {
       "type": "relation",
       "relation": "oneToMany",
       "target": "api::comment.comment",
       "mappedBy": "post"
+    },
+    "imageUrl": {
+      "type": "string"
     }
   }
 }
