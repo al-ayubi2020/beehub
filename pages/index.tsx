@@ -11,6 +11,7 @@ import {
 import comfest from "../public/Comfest.jpg";
 import Perak from "../public/Perak.png";
 import KA from "../public/KA.png";
+import Head from "next/head";
 
 const Home: NextPage = () => {
   const [show, setShow] = useState(false);
@@ -33,6 +34,14 @@ const Home: NextPage = () => {
 
   return (
     <div className="min-h-screen bg-[#e5e5e5]">
+      <Head>
+        <title>BeeHub</title>
+        <link
+          rel="shortcut icon"
+          href="https://i.pinimg.com/originals/f1/6b/e4/f16be4268597a6ff5e8869712a223c45.jpg"
+        />
+        <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+      </Head>
       <LandingHeader />
       <div id="content-biodata">
         <Biodata />

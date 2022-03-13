@@ -6,6 +6,7 @@ import {
 } from "../../components/modules";
 import { useUserContext } from "../../components/context/UserContext";
 import axios from "axios";
+import Head from "next/head";
 
 export const getStaticPaths = async () => {
   const { data } = await axios.get(
@@ -44,6 +45,14 @@ const ArticleDetails: NextPage = (props) => {
 
   return (
     <div className="min-h-screen w-full bg-[#e5e5e5]">
+      <Head>
+        <title>BeeHub Article - {props.data.data.attributes.titile}</title>
+        <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+        <link
+          rel="shortcut icon"
+          href="https://i.pinimg.com/originals/f1/6b/e4/f16be4268597a6ff5e8869712a223c45.jpg"
+        />
+      </Head>
       <ArticleDetailsHeader
         title={props.data.data.attributes.titile}
         date={d}
