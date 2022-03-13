@@ -206,6 +206,8 @@ export const UserContextProvider: React.FC<ContextProviderProps> = ({
       setUser(null);
       setToken("");
       setError("");
+      setUsername("");
+      setCustomRole("");
       setLoading(false);
       enqueueSnackbar("Berhasil logout", {
         variant: "info",
