@@ -31,12 +31,14 @@ export const UserContextProvider: React.FC<ContextProviderProps> = ({
       setUser(user);
       setUsername(user.username);
       setCustomRole(user.customRole);
+      setToken(token);
     } else {
+      setUser(null);
       setUsername("");
       setCustomRole("");
+      setToken("");
     }
     console.log("state user", user);
-    setToken(token);
   }, [token]);
 
   const login = async (identifier: any, password: any) => {
@@ -203,18 +205,14 @@ export const UserContextProvider: React.FC<ContextProviderProps> = ({
 
   const logoutUser = () => {
     try {
-      setLoading(true);
       nookies.destroy(null, "token");
       nookies.destroy(null, "beehub");
-      setUser(null);
-      setToken("");
-      setError("");
-      setUsername("");
-      setCustomRole("");
+      setLoading(true);
       setLoading(false);
       enqueueSnackbar("Berhasil logout", {
         variant: "info",
       });
+      router.reload();
     } catch (err) {
       enqueueSnackbar(`Terjadi error saat logout [${err}]`, {
         variant: "error",

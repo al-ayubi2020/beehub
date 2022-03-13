@@ -1,13 +1,8 @@
 import axios from "axios";
 import { NextPage } from "next";
 import Link from "next/link";
-import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
-import {
-  ArticleCard,
-  ArticleHighlight,
-  NewArticleCard,
-} from "../../components/modules";
+import { NewArticleCard } from "../../components/modules";
 
 const Articles: NextPage = () => {
   const [posts, setPosts] = useState([]);

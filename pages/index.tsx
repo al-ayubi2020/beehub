@@ -1,9 +1,7 @@
 import axios from "axios";
 import type { NextPage } from "next";
 import { useEffect, useRef, useState } from "react";
-import { useRouter } from "next/router";
 import Link from "next/link";
-import { useUserContext } from "../components/context/UserContext";
 import {
   AchievementBox,
   Biodata,

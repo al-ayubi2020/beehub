@@ -6,7 +6,6 @@ import {
 } from "../../components/modules";
 import { useUserContext } from "../../components/context/UserContext";
 import axios from "axios";
-import { useState } from "react";
 
 export const getStaticPaths = async () => {
   const { data } = await axios.get(
