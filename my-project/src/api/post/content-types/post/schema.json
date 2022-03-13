@@ -13,10 +13,12 @@
   "pluginOptions": {},
   "attributes": {
     "titile": {
-      "type": "string"
+      "type": "string",
+      "required": true
     },
     "body": {
-      "type": "richtext"
+      "type": "richtext",
+      "required": true
     },
     "comments": {
       "type": "relation",

@@ -13,7 +13,8 @@
   "pluginOptions": {},
   "attributes": {
     "comment": {
-      "type": "richtext"
+      "type": "richtext",
+      "required": true
     },
     "author": {
       "type": "string"
