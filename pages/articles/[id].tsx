@@ -39,6 +39,8 @@ export const getStaticProps = async (context: any) => {
 const ArticleDetails: NextPage = (props) => {
   const { username } = useUserContext();
 
+  console.log(props);
+
   return (
     <div className="min-h-screen w-full bg-[#e5e5e5]">
       <ArticleDetailsHeader
@@ -50,7 +52,7 @@ const ArticleDetails: NextPage = (props) => {
           <p className="text-justify">{props.data.data.attributes.body}</p>
         </div>
         <h3 className="mb-4 text-lg font-semibold text-gray-900 justify-start mt-5">
-          Comments (0)
+          Comments ({props.data.data.attributes.comments.data.length})
         </h3>
         <div className="h-full w-full flex flex-col items-center justify-center space-y-5">
           {props.data.data.attributes.comments.data.map(
@@ -59,13 +61,14 @@ const ArticleDetails: NextPage = (props) => {
                 <CommentBox
                   author={comment.attributes.author}
                   body={comment.attributes.comment}
-                  date={comment.attributes.createdOn}
+                  date={comment.attributes.createdAt}
                   authorValid={username}
+                  commentId={comment.id}
                 />
               </div>
             )
           )}
-          <CommentInput isLogin={false} />
+          <CommentInput postId={props.data.data.id} />
         </div>
       </div>
     </div>

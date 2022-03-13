@@ -8,6 +8,8 @@ export interface UserContextValue {
   setModalOpen: Dispatch<SetStateAction<boolean>>;
   loading: boolean;
   error: string;
+  postComment: (comment: any, postId: any) => Promise<void>;
+  deleteComment: (commenttId: any) => Promise<void>;
   login: (identifier: any, password: any) => Promise<void>;
   register: (
     username: any,

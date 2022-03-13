@@ -18,9 +18,6 @@
     "body": {
       "type": "richtext"
     },
-    "createdDate": {
-      "type": "datetime"
-    },
     "imageCover": {
       "type": "media",
       "multiple": false,
@@ -35,7 +32,8 @@
     "comments": {
       "type": "relation",
       "relation": "oneToMany",
-      "target": "api::comment.comment"
+      "target": "api::comment.comment",
+      "mappedBy": "post"
     }
   }
 }

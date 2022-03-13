@@ -54,7 +54,7 @@ export const UserContextProvider: React.FC<ContextProviderProps> = ({
           setLoading(false);
           setModalOpen(false);
           enqueueSnackbar("Berhasil login, selamat datang di BeeHub!", {
-            variant: "info",
+            variant: "success",
           });
         }
       })
@@ -91,7 +91,7 @@ export const UserContextProvider: React.FC<ContextProviderProps> = ({
           setLoading(false);
           setModalOpen(false);
           enqueueSnackbar("Berhasil register, silahkan login!", {
-            variant: "info",
+            variant: "success",
           });
         }
       })
@@ -106,6 +106,46 @@ export const UserContextProvider: React.FC<ContextProviderProps> = ({
       });
   };
 
+  const postComment = async (comment: any, postId: any) => {
+    const postComment = await axios
+      .post(
+        `${process.env.NEXT_PUBLIC_API_URL}/api/comments`,
+        {
+          data: {
+            comment: comment,
+            author: username,
+            post: postId,
+          },
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      )
+      .then(() => {
+        enqueueSnackbar("Comment ditambahkan", {
+          variant: "info",
+        });
+        router.reload();
+      });
+  };
+
+  const deleteComment = async (commenttId: any) => {
+    const deleteComment = await axios
+      .delete(`${process.env.NEXT_PUBLIC_API_URL}/api/comments/${commenttId}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
+      .then(() => {
+        enqueueSnackbar("Comment dihapus", {
+          variant: "info",
+        });
+        router.reload();
+      });
+  };
+
   const logoutUser = () => {
     try {
       setLoading(true);
@@ -115,7 +155,6 @@ export const UserContextProvider: React.FC<ContextProviderProps> = ({
       setToken("");
       setError("");
       setLoading(false);
-      router.replace("/");
       enqueueSnackbar("Berhasil logout", {
         variant: "info",
       });
@@ -137,6 +176,8 @@ export const UserContextProvider: React.FC<ContextProviderProps> = ({
     register,
     logoutUser,
     username,
+    postComment,
+    deleteComment,
   };
 
   return (

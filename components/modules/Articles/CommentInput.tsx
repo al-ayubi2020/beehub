@@ -1,13 +1,21 @@
-import React from "react";
+import React, { useRef } from "react";
 import { useUserContext } from "../../context/UserContext";
 
 export interface CommentInputProps {
-  isLogin?: boolean;
+  postId?: String;
 }
 
-export const CommentInput: React.FC<CommentInputProps> = ({ isLogin }) => {
-  const { modalOpen, setModalOpen } = useUserContext();
+export const CommentInput: React.FC<CommentInputProps> = ({ postId }) => {
+  const { setModalOpen, postComment } = useUserContext();
   const { user } = useUserContext();
+  const commentRef = useRef();
+
+  const handlePostComment = async (e: any) => {
+    e.preventDefault();
+    console.log("email", commentRef.current.value);
+
+    postComment(`${commentRef.current.value}`, postId);
+  };
 
   return (
     <div className="mx-auto w-full ">
@@ -19,6 +27,7 @@ export const CommentInput: React.FC<CommentInputProps> = ({ isLogin }) => {
             name="body"
             placeholder="Type Your Comment"
             required
+            ref={commentRef}
           ></textarea>
         ) : (
           <div className="bg-gray-100 rounded border border-gray-400 leading-normal resize-none w-full h-20 py-2 px-3 relative flex flex-col items-center justify-center">
@@ -33,7 +42,10 @@ export const CommentInput: React.FC<CommentInputProps> = ({ isLogin }) => {
         )}
         {user && (
           <div className="h-full w-full flex justify-end pt-4">
-            <button className="bg-red-300 px-2 py-1 rounded-md shadow-sm hover:bg-green-400 duration-300">
+            <button
+              className="bg-red-300 px-2 py-1 rounded-md shadow-sm hover:bg-green-400 duration-300"
+              onClick={handlePostComment}
+            >
               Post Comment
             </button>
           </div>
