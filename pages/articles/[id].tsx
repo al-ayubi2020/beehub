@@ -39,13 +39,15 @@ export const getStaticProps = async (context: any) => {
 const ArticleDetails: NextPage = (props) => {
   const { username } = useUserContext();
 
-  console.log(props);
+  const d = new Date(props.data.data.attributes.createdAt).toLocaleDateString();
+
+  console.log(d);
 
   return (
     <div className="min-h-screen w-full bg-[#e5e5e5]">
       <ArticleDetailsHeader
         title={props.data.data.attributes.titile}
-        date={props.data.data.attributes.createdAt}
+        date={d}
         image={props.data.data.attributes.imageUrl}
       />
       <div className="h-full w-full md:px-10 lg:px-20 md:py-10">

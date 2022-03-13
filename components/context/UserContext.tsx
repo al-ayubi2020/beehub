@@ -111,7 +111,7 @@ export const UserContextProvider: React.FC<ContextProviderProps> = ({
       });
   };
 
-  const postArticle = async (title: any, body: any) => {
+  const postArticle = async (title: any, body: any, imageUrl: any) => {
     const postArticle = await axios
       .post(
         `${process.env.NEXT_PUBLIC_API_URL}/api/posts`,
@@ -119,6 +119,7 @@ export const UserContextProvider: React.FC<ContextProviderProps> = ({
           data: {
             titile: title,
             body: body,
+            imageUrl: imageUrl,
           },
         },
         {
@@ -133,6 +134,8 @@ export const UserContextProvider: React.FC<ContextProviderProps> = ({
         });
         router.reload();
       });
+
+    router.reload();
   };
 
   const postComment = async (comment: any, postId: any) => {

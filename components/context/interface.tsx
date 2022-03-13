@@ -11,7 +11,7 @@ export interface UserContextValue {
   setModalAdminOpen: Dispatch<SetStateAction<boolean>>;
   loading: boolean;
   error: string;
-  postArticle: (title: any, body: any) => Promise<void>;
+  postArticle: (title: any, body: any, imageUrl: any) => Promise<void>;
   putComment: (comment: any, commentId: any) => Promise<void>;
   postComment: (comment: any, postId: any) => Promise<void>;
   deleteComment: (commenttId: any) => Promise<void>;

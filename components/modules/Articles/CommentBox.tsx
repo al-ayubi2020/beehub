@@ -41,22 +41,31 @@ export const CommentBox: React.FC<CommentBoxProps> = ({
         )}
         {author === authorValid && (
           <div className="w-full h-full flex justify-end mt-3">
-            {isEdit && (
+            {isEdit ? (
+              <div>
+                <button
+                  className="mx-2 hover:text-green-300"
+                  onClick={() =>
+                    putComment(`${commentEditRef.current.value}`, commentId)
+                  }
+                >
+                  Post
+                </button>
+                <button
+                  className="mx-2 hover:text-red-300"
+                  onClick={() => setIsEdit(!isEdit)}
+                >
+                  Batal
+                </button>
+              </div>
+            ) : (
               <button
-                className="mx-2 hover:text-green-300"
-                onClick={() =>
-                  putComment(`${commentEditRef.current.value}`, commentId)
-                }
+                className="mx-2 hover:text-red-300"
+                onClick={() => setIsEdit(!isEdit)}
               >
-                Post
+                Edit
               </button>
             )}
-            <button
-              className="mx-2 hover:text-red-300"
-              onClick={() => setIsEdit(!isEdit)}
-            >
-              Edit
-            </button>
             <button
               className="mx-2 hover:text-red-600"
               onClick={() => deleteComment(commentId)}

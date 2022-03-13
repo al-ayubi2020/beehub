@@ -2,7 +2,6 @@ import { Dialog, Transition } from "@headlessui/react";
 import { Fragment, useRef, useState } from "react";
 import { ModalAdminProps } from "./interface";
 import { useUserContext } from "../../context/UserContext";
-import { Tab } from "@headlessui/react";
 
 const ModalAdmin: React.FC<ModalAdminProps> = ({ children }) => {
   function classNames(...classes: any) {
@@ -15,13 +14,16 @@ const ModalAdmin: React.FC<ModalAdminProps> = ({ children }) => {
 
   const titleRef = useRef();
   const bodyRef = useRef();
+  const imageRef = useRef();
 
   const handlePost = async (e: any) => {
     e.preventDefault();
-    console.log("email", titleRef.current.value);
-    console.log("password", bodyRef.current.value);
 
-    postArticle(`${titleRef.current.value}`, `${bodyRef.current.value}`);
+    postArticle(
+      `${titleRef.current.value}`,
+      `${bodyRef.current.value}`,
+      `${imageRef.current.value}`
+    );
   };
 
   return (
@@ -86,6 +88,20 @@ const ModalAdmin: React.FC<ModalAdminProps> = ({ children }) => {
                         placeholder="Title"
                         required
                         ref={titleRef}
+                      />
+                    </div>
+                    <div className="mb-4">
+                      <label className="block text-gray-700 text-sm font-normal mb-2">
+                        Image URL
+                      </label>
+                      <input
+                        className="relative top-0 bg-gray-100 rounded border border-gray-400 leading-normal resize-none w-full py-2 px-3 font-medium placeholder-gray-700 focus:outline-none focus:bg-white"
+                        name="imageURL"
+                        v-model="form.image"
+                        type="text"
+                        placeholder="https://www."
+                        required
+                        ref={imageRef}
                       />
                     </div>
                     <div className="mb-6">

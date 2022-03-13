@@ -22,7 +22,9 @@ const Home: NextPage = () => {
   useEffect(() => {
     const getPosts = async () => {
       const getPost = await axios
-        .get(`${process.env.NEXT_PUBLIC_API_URL}/api/posts?populate=*`)
+        .get(
+          `${process.env.NEXT_PUBLIC_API_URL}/api/posts?populate=*&sort=id:DESC`
+        )
         .then((res) => {
           setPosts(res.data.data);
         });

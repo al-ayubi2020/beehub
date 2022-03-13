@@ -15,7 +15,9 @@ const Articles: NextPage = () => {
   useEffect(() => {
     const getPosts = async () => {
       const getPost = await axios
-        .get(`${process.env.NEXT_PUBLIC_API_URL}/api/posts?populate=*`)
+        .get(
+          `${process.env.NEXT_PUBLIC_API_URL}/api/posts?populate=*&sort=id:DESC`
+        )
         .then((res) => {
           console.log(res.data.data);
           setPosts(res.data.data);
