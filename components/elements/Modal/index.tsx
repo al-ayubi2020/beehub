@@ -3,6 +3,7 @@ import { Fragment, useRef, useState } from "react";
 import { ModalProps } from "./interface";
 import { useUserContext } from "../../context/UserContext";
 import { Tab } from "@headlessui/react";
+import CircularProgress from "@mui/material/CircularProgress";
 
 const Modal: React.FC<ModalProps> = ({ children }) => {
   function classNames(...classes: any) {
@@ -78,7 +79,7 @@ const Modal: React.FC<ModalProps> = ({ children }) => {
                   type="submit"
                   onClick={handleLogin}
                 >
-                  Login
+                  <CircularProgress />
                 </button>
               ) : (
                 <button

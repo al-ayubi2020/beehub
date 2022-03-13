@@ -17,11 +17,13 @@ export const UserContextProvider: React.FC<ContextProviderProps> = ({
   const [username, setUsername] = useState("");
   const [customRole, setCustomRole] = useState("");
   const [token, setToken] = useState("");
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
   const [modalOpen, setModalOpen] = useState(false);
   const [modalAdminOpen, setModalAdminOpen] = useState(false);
   const { enqueueSnackbar } = useSnackbar();
+
+  console.log("loading", loading);
 
   useEffect(() => {
     const cookies = nookies.get();
@@ -114,6 +116,7 @@ export const UserContextProvider: React.FC<ContextProviderProps> = ({
   };
 
   const postArticle = async (title: any, body: any, imageUrl: any) => {
+    setLoading(true);
     const postArticle = await axios
       .post(
         `${process.env.NEXT_PUBLIC_API_URL}/api/posts`,
@@ -134,13 +137,24 @@ export const UserContextProvider: React.FC<ContextProviderProps> = ({
         enqueueSnackbar("Article ditambahkan", {
           variant: "info",
         });
+        setLoading(false);
         router.reload();
+      })
+      .catch((err) => {
+        console.log("error", err);
+        setError(err);
+        setLoading(false);
+        setModalAdminOpen(false);
+        enqueueSnackbar(`Terjadi error saat post article [${err}]`, {
+          variant: "error",
+        });
       });
 
     router.reload();
   };
 
   const postComment = async (comment: any, postId: any) => {
+    setLoading(true);
     const postComment = await axios
       .post(
         `${process.env.NEXT_PUBLIC_API_URL}/api/comments`,
@@ -161,11 +175,21 @@ export const UserContextProvider: React.FC<ContextProviderProps> = ({
         enqueueSnackbar("Comment ditambahkan", {
           variant: "info",
         });
+        setLoading(false);
         router.reload();
+      })
+      .catch((err) => {
+        console.log("error", err);
+        setError(err);
+        setLoading(false);
+        enqueueSnackbar(`Terjadi error saat post comment [${err}]`, {
+          variant: "error",
+        });
       });
   };
 
   const putComment = async (comment: any, commentId: any) => {
+    setLoading(true);
     const putComment = await axios
       .put(
         `${process.env.NEXT_PUBLIC_API_URL}/api/comments/${commentId}`,
@@ -184,11 +208,21 @@ export const UserContextProvider: React.FC<ContextProviderProps> = ({
         enqueueSnackbar("Comment diperbaiki", {
           variant: "info",
         });
+        setLoading(false);
         router.reload();
+      })
+      .catch((err) => {
+        console.log("error", err);
+        setError(err);
+        setLoading(false);
+        enqueueSnackbar(`Terjadi error saat post komentar terbaru [${err}]`, {
+          variant: "error",
+        });
       });
   };
 
   const deleteComment = async (commenttId: any) => {
+    setLoading(true);
     const deleteComment = await axios
       .delete(`${process.env.NEXT_PUBLIC_API_URL}/api/comments/${commenttId}`, {
         headers: {
@@ -199,20 +233,28 @@ export const UserContextProvider: React.FC<ContextProviderProps> = ({
         enqueueSnackbar("Comment dihapus", {
           variant: "info",
         });
+        setLoading(false);
         router.reload();
+      })
+      .catch((err) => {
+        console.log("error", err);
+        setError(err);
+        setLoading(false);
+        enqueueSnackbar(`Terjadi error saat hapus komentar [${err}]`, {
+          variant: "error",
+        });
       });
   };
 
   const logoutUser = () => {
     try {
+      setLoading(true);
       nookies.destroy(null, "token");
       nookies.destroy(null, "beehub");
-      setLoading(true);
-      setLoading(false);
       enqueueSnackbar("Berhasil logout", {
         variant: "info",
       });
-      router.reload();
+      setLoading(false);
     } catch (err) {
       enqueueSnackbar(`Terjadi error saat logout [${err}]`, {
         variant: "error",
