@@ -12,6 +12,7 @@ export interface UserContextValue {
   loading: boolean;
   error: string;
   postArticle: (title: any, body: any) => Promise<void>;
+  putComment: (comment: any, commentId: any) => Promise<void>;
   postComment: (comment: any, postId: any) => Promise<void>;
   deleteComment: (commenttId: any) => Promise<void>;
   login: (identifier: any, password: any) => Promise<void>;

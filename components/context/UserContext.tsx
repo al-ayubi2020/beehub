@@ -160,6 +160,29 @@ export const UserContextProvider: React.FC<ContextProviderProps> = ({
       });
   };
 
+  const putComment = async (comment: any, commentId: any) => {
+    const putComment = await axios
+      .put(
+        `${process.env.NEXT_PUBLIC_API_URL}/api/comments/${commentId}`,
+        {
+          data: {
+            comment: comment,
+          },
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      )
+      .then(() => {
+        enqueueSnackbar("Comment diperbaiki", {
+          variant: "info",
+        });
+        router.reload();
+      });
+  };
+
   const deleteComment = async (commenttId: any) => {
     const deleteComment = await axios
       .delete(`${process.env.NEXT_PUBLIC_API_URL}/api/comments/${commenttId}`, {
@@ -211,6 +234,7 @@ export const UserContextProvider: React.FC<ContextProviderProps> = ({
     modalAdminOpen,
     setModalAdminOpen,
     postArticle,
+    putComment,
   };
 
   return (

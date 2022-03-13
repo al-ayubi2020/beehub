@@ -10,7 +10,7 @@ export const CommentInput: React.FC<CommentInputProps> = ({ postId }) => {
   const { user } = useUserContext();
   const commentRef = useRef();
 
-  const handlePostComment = async (e: any) => {
+  const handlePostComment = async () => {
     postComment(`${commentRef.current.value}`, postId);
   };
 
