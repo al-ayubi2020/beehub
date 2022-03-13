@@ -14,6 +14,7 @@ export const UserContextProvider: React.FC<ContextProviderProps> = ({
 }) => {
   const router = useRouter();
   const [user, setUser] = useState(null);
+  const [username, setUsername] = useState("");
   const [token, setToken] = useState("");
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
@@ -26,16 +27,17 @@ export const UserContextProvider: React.FC<ContextProviderProps> = ({
     if (token) {
       const user = JSON.parse(cookies.beehub);
       setUser(user);
+      setUsername(user.username);
+    } else {
+      setUsername("");
     }
-    console.log("effect", cookies.token);
-    console.log("effect2", cookies.beehub);
     setToken(token);
   }, [token]);
 
   const login = async (identifier: any, password: any) => {
     setLoading(true);
     const login = await axios
-      .post("http://localhost:1337/api/auth/local", {
+      .post(`${process.env.NEXT_PUBLIC_API_URL}/api/auth/local`, {
         identifier: `${identifier}`,
         password: `${password}`,
       })
@@ -76,7 +78,7 @@ export const UserContextProvider: React.FC<ContextProviderProps> = ({
   ) => {
     setLoading(true);
     const register = await axios
-      .post("http://localhost:1337/api/auth/local/register", {
+      .post(`${process.env.NEXT_PUBLIC_API_URL}/api/auth/local/register`, {
         username: `${username}`,
         email: `${email}`,
         password: `${password}`,
@@ -134,6 +136,7 @@ export const UserContextProvider: React.FC<ContextProviderProps> = ({
     login,
     register,
     logoutUser,
+    username,
   };
 
   return (

@@ -2,6 +2,7 @@ import { Dispatch, ReactNode, SetStateAction } from "react";
 
 export interface UserContextValue {
   user: any;
+  username: string;
   token: string;
   modalOpen: boolean;
   setModalOpen: Dispatch<SetStateAction<boolean>>;

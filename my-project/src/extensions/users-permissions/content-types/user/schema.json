@@ -75,11 +75,6 @@
       "relation": "oneToMany",
       "target": "api::comment.comment"
     },
-    "posts": {
-      "type": "relation",
-      "relation": "oneToMany",
-      "target": "api::post.post"
-    },
     "fullname": {
       "type": "string"
     }

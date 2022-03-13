@@ -1,36 +1,35 @@
 import axios from "axios";
 import type { NextPage } from "next";
-import Head from "next/head";
-import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
-import styles from "../styles/Home.module.css";
-import nookies from "nookies";
 import { useRouter } from "next/router";
 import Link from "next/link";
 import { useUserContext } from "../components/context/UserContext";
-import NavbarContainer from "../components/elements/Navbar";
 import {
   AchievementBox,
-  ArticleHighlight,
   Biodata,
   LandingHeader,
   NewArticleCard,
 } from "../components/modules";
-import image from "../public/Foto.png";
 import comfest from "../public/Comfest.jpg";
 import Perak from "../public/Perak.png";
 import KA from "../public/KA.png";
-import Modal from "../components/elements/Modal";
 
 const Home: NextPage = () => {
-  const router = useRouter();
-  const { user, token } = useUserContext();
-
   const [show, setShow] = useState(false);
 
-  const [isOpen, setIsOpen] = useState(false);
+  const [posts, setPosts] = useState([]);
 
-  console.log("tokentoken", user);
+  useEffect(() => {
+    const getPosts = async () => {
+      const getPost = await axios
+        .get(`${process.env.NEXT_PUBLIC_API_URL}/api/posts?populate=*`)
+        .then((res) => {
+          setPosts(res.data.data);
+        });
+    };
+
+    getPosts();
+  }, []);
 
   return (
     <div className="min-h-screen bg-[#e5e5e5]">
@@ -70,14 +69,18 @@ const Home: NextPage = () => {
             <p className="cursor-pointer hover:text-orange-300">See More</p>
           </Link>
         </div>
-        {[...Array(3)].map((item) => (
-          <NewArticleCard
-            height="40"
-            width="full"
-            title="What is Lorem Ipsum?"
-            date="20 june 2021"
-            body="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum."
-          />
+        {posts.map((posts, id) => (
+          <Link href={`/articles/${posts.id}`}>
+            <div key={id}>
+              <NewArticleCard
+                height="40"
+                width="full"
+                title={posts?.attributes?.titile}
+                date={posts?.attributes?.createdAt}
+                body={posts?.attributes?.body}
+              />
+            </div>
+          </Link>
         ))}
       </div>
     </div>
