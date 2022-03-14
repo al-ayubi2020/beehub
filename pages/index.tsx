@@ -69,7 +69,7 @@ const Home: NextPage = () => {
             url="https://perak.cs.ui.ac.id/"
             show={show}
             image={Perak}
-            title="Perak 2021 Web Developer"
+            title="Perak 2022 Web Developer"
             achiType="Staff Project"
           />
         </div>
