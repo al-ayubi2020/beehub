@@ -23,6 +23,13 @@ export const UserContextProvider: React.FC<ContextProviderProps> = ({
   const [modalAdminOpen, setModalAdminOpen] = useState(false);
   const { enqueueSnackbar } = useSnackbar();
 
+  const resetContext = () => {
+    setUser(null);
+    setUsername("");
+    setCustomRole("");
+    setToken("");
+  };
+
   useEffect(() => {
     const cookies = nookies.get();
     const token = cookies.token;
@@ -240,6 +247,7 @@ export const UserContextProvider: React.FC<ContextProviderProps> = ({
       setLoading(true);
       nookies.destroy(null, "token");
       nookies.destroy(null, "beehub");
+      resetContext();
       setLoading(false);
       enqueueSnackbar("Berhasil logout", {
         variant: "info",
