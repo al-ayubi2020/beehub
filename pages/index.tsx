@@ -81,9 +81,9 @@ const Home: NextPage = () => {
             <p className="cursor-pointer hover:text-orange-300">See More</p>
           </Link>
         </div>
-        {posts.slice(0, 3).map((posts: any, idx) => (
-          <Link href={`/articles/${posts.id}`}>
-            <div key={idx}>
+        {posts.slice(0, 3).map((posts: any) => (
+          <Link href={`/articles/${posts.id}`} key={posts.id}>
+            <div>
               <NewArticleCard
                 height="40"
                 width="full"
