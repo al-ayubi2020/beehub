@@ -1,6 +1,6 @@
 export interface NewArticleCardProps {
   title?: string;
-  date?: string;
+  date?: any;
   image?: string;
   height?: string;
   width?: string;

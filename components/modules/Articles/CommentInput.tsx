@@ -1,5 +1,5 @@
 import { CircularProgress } from "@mui/material";
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 import { useUserContext } from "../../context/UserContext";
 
 export interface CommentInputProps {
@@ -8,10 +8,11 @@ export interface CommentInputProps {
 
 export const CommentInput: React.FC<CommentInputProps> = ({ postId }) => {
   const { setModalOpen, postComment, user, loading } = useUserContext();
-  const commentRef = useRef();
+
+  const [comment, setComment] = useState("");
 
   const handlePostComment = async () => {
-    postComment(`${commentRef.current.value}`, postId);
+    postComment(`${comment}`, postId);
   };
 
   return (
@@ -24,7 +25,9 @@ export const CommentInput: React.FC<CommentInputProps> = ({ postId }) => {
             name="body"
             placeholder="Type Your Comment"
             required
-            ref={commentRef}
+            onChange={(e) => {
+              setComment(e.currentTarget.value);
+            }}
           ></textarea>
         ) : (
           <div className="bg-gray-100 rounded border border-gray-400 leading-normal resize-none w-full h-20 py-2 px-3 relative flex flex-col items-center justify-center">

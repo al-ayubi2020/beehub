@@ -18,7 +18,7 @@ export const CommentBox: React.FC<CommentBoxProps> = ({
 }) => {
   const { deleteComment, putComment } = useUserContext();
 
-  const commentEditRef = useRef();
+  const [commentEdit, setCommentEdit] = useState("");
 
   const [isEdit, setIsEdit] = useState(false);
 
@@ -34,7 +34,9 @@ export const CommentBox: React.FC<CommentBoxProps> = ({
             placeholder="Type Your Fixed Comment"
             required
             defaultValue={body}
-            ref={commentEditRef}
+            onChange={(e) => {
+              setCommentEdit(e.currentTarget.value);
+            }}
           ></textarea>
         ) : (
           <p className="text-sm">{body}</p>
@@ -45,9 +47,7 @@ export const CommentBox: React.FC<CommentBoxProps> = ({
               <div>
                 <button
                   className="mx-2 hover:text-green-300"
-                  onClick={() =>
-                    putComment(`${commentEditRef.current.value}`, commentId)
-                  }
+                  onClick={() => putComment(`${commentEdit}`, commentId)}
                 >
                   Post
                 </button>

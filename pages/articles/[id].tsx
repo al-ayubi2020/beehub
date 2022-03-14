@@ -36,7 +36,7 @@ export const getStaticProps = async (context: any) => {
   };
 };
 
-const ArticleDetails: NextPage = (props) => {
+const ArticleDetails: NextPage = (props: any) => {
   const { username } = useUserContext();
 
   const d = new Date(props.data.data.attributes.createdAt).toLocaleDateString();

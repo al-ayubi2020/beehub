@@ -13,20 +13,17 @@ const ModalAdmin: React.FC<ModalAdminProps> = ({ children }) => {
     useUserContext();
   const [tabIndex, setTabIndex] = useState(1);
 
+  const [title, setTitle] = useState("");
+  const [body, setBody] = useState("");
+  const [image, setImage] = useState("");
   const titleRef = useRef<HTMLInputElement>();
   const bodyRef = useRef<HTMLInputElement>();
   const imageRef = useRef<HTMLInputElement>();
 
-  console.log(titleRef.current?.value);
-
   const handlePost = async (e: any) => {
     e.preventDefault();
 
-    postArticle(
-      `${titleRef.current?.value}`,
-      `${bodyRef?.current?.value}`,
-      `${imageRef?.current?.value}`
-    );
+    postArticle(`${title}`, `${body}`, `${image}`);
   };
 
   return (
@@ -90,7 +87,9 @@ const ModalAdmin: React.FC<ModalAdminProps> = ({ children }) => {
                         type="title"
                         placeholder="Title"
                         required
-                        ref={titleRef}
+                        onChange={(e) => {
+                          setTitle(e.currentTarget.value);
+                        }}
                       />
                     </div>
                     <div className="mb-4">
@@ -104,7 +103,9 @@ const ModalAdmin: React.FC<ModalAdminProps> = ({ children }) => {
                         type="text"
                         placeholder="https://www."
                         required
-                        ref={imageRef}
+                        onChange={(e) => {
+                          setImage(e.currentTarget.value);
+                        }}
                       />
                     </div>
                     <div className="mb-6">
@@ -116,7 +117,9 @@ const ModalAdmin: React.FC<ModalAdminProps> = ({ children }) => {
                         name="body"
                         placeholder=""
                         required
-                        ref={bodyRef}
+                        onChange={(e) => {
+                          setBody(e.currentTarget.value);
+                        }}
                       ></textarea>
                     </div>
                     <div className="flex items-center justify-between">

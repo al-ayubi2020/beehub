@@ -13,28 +13,29 @@ const Modal: React.FC<ModalProps> = ({ children }) => {
   const { modalOpen, setModalOpen } = useUserContext();
   const [tabIndex, setTabIndex] = useState(1);
 
-  const emailRef = useRef<HTMLInputElement>();
-  const passwordRef = useRef<HTMLInputElement>();
-  const unameRef = useRef<HTMLInputElement>();
-  const fullnameRef = useRef<HTMLInputElement>();
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [username, setUsername] = useState("");
+  const [fullname, setFullname] = useState("");
+
+  function checkAnswer(event: any) {
+    if (event.key === "Enter") {
+      console.log("Enter key was pressed");
+    }
+  }
+
   const { login, register, loading } = useUserContext();
 
   const handleRegister = async (e: any) => {
     e.preventDefault();
 
-    register(
-      `${unameRef.current?.value}`,
-      `${emailRef.current?.value}`,
-      `${passwordRef.current?.value}`,
-      "basic",
-      `${fullnameRef.current?.value}`
-    );
+    register(`${username}`, `${email}`, `${password}`, "basic", `${fullname}`);
   };
 
   const handleLogin = async (e: any) => {
     e.preventDefault();
 
-    login(`${emailRef.current?.value}`, `${passwordRef.current?.value}`);
+    login(`${email}`, `${password}`);
   };
 
   const TabHandler = (i: any) => {
@@ -52,8 +53,10 @@ const Modal: React.FC<ModalProps> = ({ children }) => {
                 v-model="form.email"
                 type="email"
                 placeholder="Email"
-                ref={emailRef}
                 required
+                onChange={(e) => {
+                  setEmail(e.currentTarget.value);
+                }}
               />
             </div>
             <div className="mb-6">
@@ -66,8 +69,10 @@ const Modal: React.FC<ModalProps> = ({ children }) => {
                 type="password"
                 placeholder="Password"
                 name="password"
-                ref={passwordRef}
                 required
+                onChange={(e) => {
+                  setPassword(e.currentTarget.value);
+                }}
               />
             </div>
             <div className="flex items-center justify-between">
@@ -108,7 +113,9 @@ const Modal: React.FC<ModalProps> = ({ children }) => {
                 type="usename"
                 required
                 placeholder="Username"
-                ref={unameRef}
+                onChange={(e) => {
+                  setUsername(e.currentTarget.value);
+                }}
               />
             </div>
             <div className="mb-4">
@@ -122,7 +129,9 @@ const Modal: React.FC<ModalProps> = ({ children }) => {
                 type="fullname"
                 required
                 placeholder="Fullname"
-                ref={fullnameRef}
+                onChange={(e) => {
+                  setFullname(e.currentTarget.value);
+                }}
               />
             </div>
             <div className="mb-4">
@@ -136,7 +145,9 @@ const Modal: React.FC<ModalProps> = ({ children }) => {
                 type="email"
                 required
                 placeholder="Email"
-                ref={emailRef}
+                onChange={(e) => {
+                  setEmail(e.currentTarget.value);
+                }}
               />
             </div>
             <div className="mb-6">
@@ -150,7 +161,9 @@ const Modal: React.FC<ModalProps> = ({ children }) => {
                 placeholder="Password"
                 name="password"
                 required
-                ref={passwordRef}
+                onChange={(e) => {
+                  setPassword(e.currentTarget.value);
+                }}
               />
             </div>
             <div className="flex items-center justify-between">
