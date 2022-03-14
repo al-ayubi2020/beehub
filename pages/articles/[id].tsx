@@ -64,19 +64,17 @@ const ArticleDetails: NextPage = (props: any) => {
           Comments ({props.data.data.attributes.comments.data.length})
         </h3>
         <div className="h-full w-full flex flex-col justify-center space-y-5 px-3 pb-5">
-          {props.data.data.attributes.comments.data.map(
-            (comment: any, id: number) => (
-              <div key={id}>
-                <CommentBox
-                  author={comment.attributes.author}
-                  body={comment.attributes.comment}
-                  date={comment.attributes.createdAt}
-                  authorValid={username}
-                  commentId={comment.id}
-                />
-              </div>
-            )
-          )}
+          {props.data.data.attributes.comments.data.map((comment: any) => (
+            <div key={comment.id}>
+              <CommentBox
+                author={comment.attributes.author}
+                body={comment.attributes.comment}
+                date={comment.attributes.createdAt}
+                authorValid={username}
+                commentId={comment.id}
+              />
+            </div>
+          ))}
           <CommentInput postId={props.data.data.id} />
         </div>
       </div>
