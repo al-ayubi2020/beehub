@@ -45,9 +45,9 @@ const Articles: NextPage = () => {
             <CircularProgress />
           </div>
         )}
-        {posts.map((posts: any, id: number) => (
+        {posts.map((posts: any, idx) => (
           <Link href={`/articles/${posts.id}`}>
-            <div key={id}>
+            <div key={idx}>
               <NewArticleCard
                 height="40"
                 width="full"
