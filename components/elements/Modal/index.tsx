@@ -13,10 +13,10 @@ const Modal: React.FC<ModalProps> = ({ children }) => {
   const { modalOpen, setModalOpen } = useUserContext();
   const [tabIndex, setTabIndex] = useState(1);
 
-  const emailRef = useRef();
-  const passwordRef = useRef();
-  const unameRef = useRef();
-  const fullnameRef = useRef();
+  const emailRef = useRef<HTMLInputElement>();
+  const passwordRef = useRef<HTMLInputElement>();
+  const unameRef = useRef<HTMLInputElement>();
+  const fullnameRef = useRef<HTMLInputElement>();
   const { login, register, loading } = useUserContext();
 
   const handleRegister = async (e: any) => {

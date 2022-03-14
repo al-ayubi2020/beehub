@@ -13,15 +13,17 @@ const ModalAdmin: React.FC<ModalAdminProps> = ({ children }) => {
     useUserContext();
   const [tabIndex, setTabIndex] = useState(1);
 
-  const titleRef = useRef();
-  const bodyRef = useRef();
-  const imageRef = useRef();
+  const titleRef = useRef<HTMLInputElement>();
+  const bodyRef = useRef<HTMLInputElement>();
+  const imageRef = useRef<HTMLInputElement>();
+
+  console.log(titleRef.current?.value);
 
   const handlePost = async (e: any) => {
     e.preventDefault();
 
     postArticle(
-      `${titleRef?.current?.value}`,
+      `${titleRef.current?.value}`,
       `${bodyRef?.current?.value}`,
       `${imageRef?.current?.value}`
     );
