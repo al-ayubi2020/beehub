@@ -17,7 +17,7 @@ export const Biodata = () => {
       <div className="h-3/5 w-full px-10 md:h-full md:w-1/2 md:flex md:items-center md:justify-center ">
         <div className="h-full w-full md:h-fit ">
           <div className="text-2xl space-y-2 text-center">
-            <p className="">Hey there! I'm</p>
+            <p className="">Hey there! {"I'm"}</p>
             <p className="font-bold">Muhammad Al Ayubi</p>
             <div className="flex space-x-1 items-center justify-center">
               <p>aka</p>
@@ -26,8 +26,8 @@ export const Biodata = () => {
               <p>Bakung</p>
             </div>
             <p className="text-sm">
-              I'm currently focusing on web development and can't wait to see
-              what projects will be faced on in the future
+              {"I'm"} currently focusing on web development and {"can't"} wait
+              to see what projects will be faced on in the future
             </p>
           </div>
           <div className="justify-start mt-5">
