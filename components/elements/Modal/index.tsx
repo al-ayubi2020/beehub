@@ -18,12 +18,6 @@ const Modal: React.FC<ModalProps> = ({ children }) => {
   const [username, setUsername] = useState("");
   const [fullname, setFullname] = useState("");
 
-  function checkAnswer(event: any) {
-    if (event.key === "Enter") {
-      console.log("Enter key was pressed");
-    }
-  }
-
   const { login, register, loading } = useUserContext();
 
   const handleRegister = async (e: any) => {

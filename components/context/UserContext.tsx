@@ -23,8 +23,6 @@ export const UserContextProvider: React.FC<ContextProviderProps> = ({
   const [modalAdminOpen, setModalAdminOpen] = useState(false);
   const { enqueueSnackbar } = useSnackbar();
 
-  console.log("loading", loading);
-
   useEffect(() => {
     const cookies = nookies.get();
     const token = cookies.token;
@@ -40,7 +38,6 @@ export const UserContextProvider: React.FC<ContextProviderProps> = ({
       setCustomRole("");
       setToken("");
     }
-    console.log("state user", user);
   }, [token]);
 
   const login = async (identifier: any, password: any) => {
@@ -51,13 +48,11 @@ export const UserContextProvider: React.FC<ContextProviderProps> = ({
         password: `${password}`,
       })
       .then((res) => {
-        console.log("res", res);
         if (res.data.jwt) {
           const userObj = res.data.user;
           const userJson = JSON.stringify(userObj);
           setUser(res.data.user);
           setToken(res.data.jwt);
-          console.log("jwt", token);
           nookies.set(null, "token", res.data.jwt);
           nookies.set(null, "beehub", userJson);
           setLoading(false);
@@ -68,7 +63,6 @@ export const UserContextProvider: React.FC<ContextProviderProps> = ({
         }
       })
       .catch((err) => {
-        console.log("error", err);
         setError(err);
         setLoading(false);
         setModalOpen(false);
@@ -95,7 +89,6 @@ export const UserContextProvider: React.FC<ContextProviderProps> = ({
         fullname: `${fullname}`,
       })
       .then((res) => {
-        console.log("res", res);
         if (res.data.jwt) {
           setLoading(false);
           setModalOpen(false);
@@ -105,7 +98,6 @@ export const UserContextProvider: React.FC<ContextProviderProps> = ({
         }
       })
       .catch((err) => {
-        console.log("error", err);
         setError(err);
         setLoading(false);
         setModalOpen(false);
@@ -142,7 +134,6 @@ export const UserContextProvider: React.FC<ContextProviderProps> = ({
         router.reload();
       })
       .catch((err) => {
-        console.log("error", err);
         setError(err);
         setLoading(false);
         setModalAdminOpen(false);
@@ -180,7 +171,6 @@ export const UserContextProvider: React.FC<ContextProviderProps> = ({
         router.reload();
       })
       .catch((err) => {
-        console.log("error", err);
         setError(err);
         setLoading(false);
         enqueueSnackbar(`Terjadi error saat post comment [${err}]`, {
@@ -213,7 +203,6 @@ export const UserContextProvider: React.FC<ContextProviderProps> = ({
         router.reload();
       })
       .catch((err) => {
-        console.log("error", err);
         setError(err);
         setLoading(false);
         enqueueSnackbar(`Terjadi error saat post komentar terbaru [${err}]`, {
@@ -238,7 +227,6 @@ export const UserContextProvider: React.FC<ContextProviderProps> = ({
         router.reload();
       })
       .catch((err) => {
-        console.log("error", err);
         setError(err);
         setLoading(false);
         enqueueSnackbar(`Terjadi error saat hapus komentar [${err}]`, {

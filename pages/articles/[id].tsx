@@ -41,8 +41,6 @@ const ArticleDetails: NextPage = (props: any) => {
 
   const d = new Date(props.data.data.attributes.createdAt).toLocaleDateString();
 
-  console.log(d);
-
   return (
     <div className="min-h-screen w-full bg-[#e5e5e5]">
       <Head>
