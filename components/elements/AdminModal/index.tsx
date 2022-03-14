@@ -21,9 +21,9 @@ const ModalAdmin: React.FC<ModalAdminProps> = ({ children }) => {
     e.preventDefault();
 
     postArticle(
-      `${titleRef.current.value}`,
-      `${bodyRef.current.value}`,
-      `${imageRef.current.value}`
+      `${titleRef?.current?.value}`,
+      `${bodyRef?.current?.value}`,
+      `${imageRef?.current?.value}`
     );
   };
 

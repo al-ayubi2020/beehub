@@ -23,20 +23,18 @@ const Modal: React.FC<ModalProps> = ({ children }) => {
     e.preventDefault();
 
     register(
-      `${unameRef.current.value}`,
-      `${emailRef.current.value}`,
-      `${passwordRef.current.value}`,
+      `${unameRef.current?.value}`,
+      `${emailRef.current?.value}`,
+      `${passwordRef.current?.value}`,
       "basic",
-      `${fullnameRef.current.value}`
+      `${fullnameRef.current?.value}`
     );
   };
 
   const handleLogin = async (e: any) => {
     e.preventDefault();
-    console.log("email", emailRef.current.value);
-    console.log("password", passwordRef.current.value);
 
-    login(`${emailRef.current.value}`, `${passwordRef.current.value}`);
+    login(`${emailRef.current?.value}`, `${passwordRef.current?.value}`);
   };
 
   const TabHandler = (i: any) => {
