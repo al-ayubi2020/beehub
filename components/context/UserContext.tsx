@@ -244,7 +244,6 @@ export const UserContextProvider: React.FC<ContextProviderProps> = ({
       enqueueSnackbar("Berhasil logout", {
         variant: "info",
       });
-      router.reload();
     } catch (err) {
       nookies.destroy(null, "token");
       nookies.destroy(null, "beehub");
@@ -252,7 +251,6 @@ export const UserContextProvider: React.FC<ContextProviderProps> = ({
       enqueueSnackbar(`Terjadi error saat logout [${err}]`, {
         variant: "error",
       });
-      router.reload();
     }
   };
 
